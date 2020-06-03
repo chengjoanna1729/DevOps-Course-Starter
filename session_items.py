@@ -70,13 +70,11 @@ def save_item(item):
 
 def remove_item(item):
     """
-    Removes an existing item in the session. If no existing item matches the ID of the specified item, nothing is removed.
+    Removes an existing item in the session. If no existing item matches the specified item, nothing is removed.
 
     Args:
         item: The item to remove.
     """
-    existing_items = get_items()
-    if item in existing_items:
-        existing_items.remove(item)
 
-    session['items'] = existing_items
+    items = get_items()
+    session['items'] = [listItem for listItem in items if listItem != item]
