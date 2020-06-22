@@ -3,6 +3,8 @@ import os
 
 class Config:
     """Base configuration variables."""
-    SECRET_KEY = os.environ.get('SECRET_KEY')
-    if not SECRET_KEY:
-        raise ValueError("No SECRET_KEY set for Flask application. Did you forget to run setup.sh?")
+    TRELLO_API_KEY = os.environ.get('TRELLO_API_KEY')
+    TRELLO_API_TOKEN = os.environ.get('TRELLO_API_TOKEN')
+
+    if not (TRELLO_API_KEY and TRELLO_API_TOKEN):
+        raise ValueError("No Trello credentials set for Flask application. Did you forget to run setup.sh?")
