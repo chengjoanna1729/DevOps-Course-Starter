@@ -14,7 +14,7 @@ def get_trello_card_url(id):
 
 def map_card_to_item(card):
     status = 'Not Started' if card['idList'] == todo_list_id else 'Completed'
-    return Item(card['id'], card['name'], status)
+    return Item(card['id'], card['name'], status, card['desc'])
 
 
 def get_items():
@@ -30,15 +30,16 @@ def get_items():
     return [map_card_to_item(card) for card in response]
 
 
-def add_item(title):
+def add_item(title, description = ''):
     """
-    Adds a new item with the specified title to Trello.
+    Adds a new item with the specified title and optional description to Trello.
 
     Args:
         title: The title of the item.
+        description: The description of the item
     """
 
-    requests.request('POST', trello_cards_url, params={**auth_params, 'idList': todo_list_id, 'name': title })
+    requests.request('POST', trello_cards_url, params={**auth_params, 'idList': todo_list_id, 'name': title, 'desc': description })
 
 
 def mark_as_complete(id):
@@ -46,7 +47,7 @@ def mark_as_complete(id):
     Moves an item from the To Do list to Done.
 
     Args:
-        item: The item to mark as complete.
+        id: The id of the item to mark as complete.
     """
 
     requests.request('PUT', get_trello_card_url(id), params={**auth_params, 'idList': done_list_id })
@@ -57,7 +58,7 @@ def remove_item(id):
     Removes an existing item from Trello. 
 
     Args:
-        item: The item to remove.
+        id: The id of the item to remove.
     """
 
     requests.request('DELETE', get_trello_card_url(id), params=auth_params)
