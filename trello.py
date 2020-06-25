@@ -1,21 +1,16 @@
-from item import Item
-from flask_config import Config
+from todo_item import TodoItem
+from trello_config import Config
 import requests
 
-trello_board_url = 'https://api.trello.com/1/boards/5ef0aa880a06bf1a91b44992/cards'
+trello_board_url = f'https://api.trello.com/1/boards/{Config.TRELLO_BOARD_ID}/cards'
 trello_cards_url = 'https://api.trello.com/1/cards'
-todo_list_id = '5ef0aa880a06bf1a91b44993'
-done_list_id = '5ef0aa880a06bf1a91b44995'
+todo_list_id = Config.TRELLO_TODO_LIST_ID
+done_list_id = Config.TRELLO_DONE_LIST_ID
 
-auth_params = { 'key': Config.TRELLO_API_KEY,'token': Config.TRELLO_API_TOKEN }
+auth_params = { 'key': Config.TRELLO_API_KEY, 'token': Config.TRELLO_API_TOKEN }
 
 def get_trello_card_url(id):
     return f'{trello_cards_url}/{id}'
-
-def map_card_to_item(card):
-    status = 'Not Started' if card['idList'] == todo_list_id else 'Completed'
-    return Item(card['id'], card['name'], status, card['desc'])
-
 
 def get_items():
     """
@@ -27,7 +22,7 @@ def get_items():
     
     response = requests.request('GET', trello_board_url, params=auth_params).json()
 
-    return [map_card_to_item(card) for card in response]
+    return [TodoItem.fromTrelloCard(card, todo_list_id) for card in response]
 
 
 def add_item(title, description = ''):
