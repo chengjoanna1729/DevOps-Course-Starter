@@ -1,13 +1,22 @@
-from todo_item import TodoItem
+from to_do_item import ToDoItem, Status
 from trello_config import Config
 import requests
 
 trello_board_url = f'https://api.trello.com/1/boards/{Config.TRELLO_BOARD_ID}/cards'
 trello_cards_url = 'https://api.trello.com/1/cards'
 todo_list_id = Config.TRELLO_TODO_LIST_ID
+doing_list_id = Config.TRELLO_DOING_LIST_ID
 done_list_id = Config.TRELLO_DONE_LIST_ID
 
 auth_params = { 'key': Config.TRELLO_API_KEY, 'token': Config.TRELLO_API_TOKEN }
+
+def get_status(list_id):
+    if list_id == todo_list_id:
+        return Status.TO_DO
+    elif list_id == doing_list_id:
+        return Status.DOING
+    else:
+        return Status.DONE
 
 def get_trello_card_url(id):
     return f'{trello_cards_url}/{id}'
@@ -21,8 +30,8 @@ def get_items():
     """
     
     response = requests.request('GET', trello_board_url, params=auth_params).json()
-
-    return [TodoItem.fromTrelloCard(card, todo_list_id) for card in response]
+    
+    return [ToDoItem.fromTrelloCard(card, get_status(card['idList'])) for card in response]
 
 
 def add_item(title, description = ''):
