@@ -26,7 +26,7 @@
       </form>
 
       <ul class="list-group mb-4">
-        {% for item in items %}
+        {% for item in view_model.items %}
           <li class="list-group-item">
             <div class="row">
               <span class="col"><b>{{ item.title }}</b>: {{ item.status }}</span>
