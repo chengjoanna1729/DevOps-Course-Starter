@@ -4,8 +4,10 @@ import requests
 
 config = Config('.env')
 
-trello_board_url = f'https://api.trello.com/1/boards/{config.board_id}/cards'
-trello_cards_url = 'https://api.trello.com/1/cards'
+trello_base_url = 'https://api.trello.com/1'
+trello_board_url = f'{trello_base_url}/boards/{config.board_id}/cards'
+trello_cards_url = f'{trello_base_url}/cards'
+
 auth_params = { 'key': config.api_key, 'token': config.api_token }
 
 def get_status(list_id):
@@ -64,3 +66,10 @@ def remove_item(id):
     """
 
     requests.request('DELETE', get_trello_card_url(id), params=auth_params)
+
+def create_trello_board(name):
+    response = requests.request('POST', f'{trello_base_url}/boards', params={**auth_params, 'name': name }).json()
+    return response['id']
+
+def delete_trello_board(id):
+    requests.request('DELETE', f'{trello_base_url}/boards/{id}', params=auth_params)
