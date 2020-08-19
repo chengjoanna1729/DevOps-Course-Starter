@@ -35,5 +35,17 @@ def test_task_journey(driver, test_app):
 
     assert driver.title == 'To-Do App'
 
-    # TODO: assert more things
-    
+    # Create a new item
+    add_item_input = driver.find_element_by_name("item_title")
+    add_item_input.send_keys("New thing to do")
+
+    add_item_button = driver.find_element_by_xpath('//button[text()="Add item"]')
+    add_item_button.click()
+
+    # Complete item
+    complete_item_button = driver.find_element_by_xpath('//button[text()="Mark as complete"]')
+    complete_item_button.click()
+
+    # Delete item
+    delete_item_button = driver.find_element_by_xpath('//button[text()="Delete"]')
+    delete_item_button.click()

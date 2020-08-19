@@ -1,6 +1,7 @@
 import pytest
 from dotenv import find_dotenv, load_dotenv
 import requests
+import lxml.html
 
 import app
 
@@ -55,7 +56,5 @@ def test_app(mock_get_requests, client):
     response = client.get('/')
     assert response.status_code == 200 
 
-    html_string = str(response.data)
-    assert 'A name for an item' in html_string
-    assert 'Eat lunch' in html_string
-    assert 'Finish exercise' in html_string
+    tree = lxml.html.fromstring(response.data)
+    assert all(item_name in ('A name for an item', 'Eat lunch', 'Finish exercise') for item_name in tree.xpath("//span/text()"))

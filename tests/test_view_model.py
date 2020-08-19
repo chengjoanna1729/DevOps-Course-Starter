@@ -32,8 +32,7 @@ def test_return_all_items(items_view_model):
 def test_return_to_do_items(items_view_model):
     to_do_items = items_view_model.to_do_items
     assert len(to_do_items) == 2
-    assert set([item.id for item in to_do_items]) == set([1, 2])
-
+    assert all(item.id in (1, 2) for item in to_do_items)
 
 def test_return_doing_items(items_view_model):
     doing_items = items_view_model.doing_items
@@ -54,9 +53,9 @@ def test_show_all_done_items_false(done_items_view_model):
 def test_return_recent_done_items(done_items_view_model):
     recent_done_items = done_items_view_model.recent_done_items
     assert len(recent_done_items) == 3
-    assert set([item.id for item in recent_done_items]) == set([12, 13, 15])
+    assert all(item.id in (12, 13, 15) for item in recent_done_items)
 
 def test_return_older_done_items(done_items_view_model):
     older_done_items = done_items_view_model.older_done_items
     assert len(older_done_items) == 2    
-    assert set([item.id for item in older_done_items]) == set([11, 14])
+    assert all(item.id in (11, 14) for item in older_done_items)
