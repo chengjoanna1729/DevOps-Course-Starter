@@ -118,3 +118,6 @@ env/
 ### Testing ###
 geckodriver.exe
 geckodriver.log
+
+### Vagrant ###
+.vagrant
