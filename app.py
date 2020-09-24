@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from trello import Trello
 from view_model import ViewModel
 
-def create_app(dotenv):
+def create_app(dotenv = '.env'):
     app = Flask(__name__)
     trello = Trello(dotenv)
 
@@ -28,8 +28,5 @@ def create_app(dotenv):
     def delete_item(id):
         trello.remove_item(id)
         return redirect(url_for('index'))
-
-    if __name__ == '__main__':
-        app.run()
 
     return app

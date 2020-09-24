@@ -40,16 +40,16 @@ class MockCardsResponse:
         ]
 
 @pytest.fixture()
-def mock_get_requests(monkeypatch):
+def mock_requests(monkeypatch):
     def mock_get(*args, **kwargs):
         return MockCardsResponse
 
     monkeypatch.setattr(requests, "request", mock_get)
 
 
-def test_app(mock_get_requests, client):
+def test_app(mock_requests, client):
     response = client.get('/')
     assert response.status_code == 200 
 
     tree = lxml.html.fromstring(response.data)
-    assert all(item_name in ('A name for an item', 'Eat lunch', 'Finish exercise') for item_name in tree.xpath("//span/text()"))
+    assert ['A name for an item', 'Eat lunch', 'Finish exercise'] == tree.xpath("//li[@class='list-group-item']/div/span/text()")
