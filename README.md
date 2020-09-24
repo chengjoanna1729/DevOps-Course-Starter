@@ -29,3 +29,14 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+### Connecting with Trello
+To connect up the app with a trello board, copy the contents of `.env.template` into a `.env` file if not already done in setup. 
+Paste your Trello API key and token from [here](https://trello.com/app-key) into the respective values.
+Identify the id of the board you wish to connect with, as well as the list ids of the to-do, doing, and done lists and paste them in.
+
+### Running tests
+To be able to run the e2e tests, Firefox must be installed and you must download `geckodriver.exe` and put it in the root folder of the project.
+
+To run all tests, run `pytest`.
+To run tests in a particular folder, run `pytest tests` or `pytest tests_e2e`.
