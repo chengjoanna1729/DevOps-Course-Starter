@@ -4,18 +4,14 @@
 
 The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from a bash shell terminal:
 
-### On macOS and Linux
 ```bash
-$ source setup.sh
-```
-### On Windows (Using Git Bash)
-```bash
-$ source setup.sh --windows
+$ poetry install
+$ cp -n .env.template .env
 ```
 
-Once the setup script has completed and all packages have been installed, start the Flask app by running:
+Once all packages have been installed, start the Flask app by running:
 ```bash
-$ flask run
+$ poetry run flask run
 ```
 
 You should see output similar to the following:
@@ -40,3 +36,13 @@ To be able to run the e2e tests, Firefox must be installed and you must download
 
 To run all tests, run `pytest`.
 To run tests in a particular folder, run `pytest tests` or `pytest tests_e2e`.
+
+### Running the app in a VM
+In the root directory of this repo, run `vagrant up`.
+
+### Running the app via docker-compose
+For first time setup, run the following commands:
+Dev: `docker-compose up --build`
+Prod: `docker-compose -f docker-compose.prod.yml up --build`
+
+In subsequent runs you can omit the `--build` flag.
