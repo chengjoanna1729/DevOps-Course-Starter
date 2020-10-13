@@ -41,8 +41,6 @@ To run tests in a particular folder, run `pytest tests` or `pytest tests_e2e`.
 In the root directory of this repo, run `vagrant up`.
 
 ### Running the app via docker-compose
-For first time setup, run the following commands:
+To run the app in their respective environments, run the following commands:
 Dev: `docker-compose up --build`
 Prod: `docker-compose -f docker-compose.prod.yml up --build`
-
-In subsequent runs you can omit the `--build` flag.
