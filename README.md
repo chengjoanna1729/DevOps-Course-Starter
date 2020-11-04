@@ -44,3 +44,6 @@ In the root directory of this repo, run `vagrant up`.
 To run the app in their respective environments, run the following commands:
 Dev: `docker-compose up --build`
 Prod: `docker-compose -f docker-compose.prod.yml up --build`
+
+### Architecture diagrams
+These can be found in the `./documentation` folder.

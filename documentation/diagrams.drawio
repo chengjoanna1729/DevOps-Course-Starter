@@ -1,6 +1,6 @@
-<mxfile host="65bd71144e" modified="2020-10-21T14:38:29.675Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="Y8vVU7OFJuBNsGoLX304" version="13.6.5">
+<mxfile host="65bd71144e" modified="2020-11-04T13:36:15.074Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.50.1 Chrome/83.0.4103.122 Electron/9.2.1 Safari/537.36" etag="DGJYWwVXPAk8rRx0Qz4M" version="13.6.5">
     <diagram id="FNPzh5rsRgi6MCxf9DPo" name="Page-1">
-        <mxGraphModel dx="1033" dy="821" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="723" dy="575" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -93,49 +93,61 @@
                         <mxPoint x="15" as="offset"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="23" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;Component:&lt;/font&gt;&lt;/b&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" vertex="1" parent="1">
+                <mxCell id="23" value="&lt;b&gt;&lt;font style=&quot;font-size: 24px&quot;&gt;Component:&lt;/font&gt;&lt;/b&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];fillColor=none;strokeColor=none;rounded=0;labelBackgroundColor=#FFFFFF;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="80" y="570" width="160" height="20" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Flask&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Framework to easily configure routes and corresponding actions&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" vertex="1" parent="1">
+                <mxCell id="24" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Flask&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Framework to easily configure routes and corresponding actions&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="80" y="640" width="180" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;" vertex="1" parent="1">
+                <mxCell id="25" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="400" y="570" width="420" height="270" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Trello API&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Stores the to-do app items and lists&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;spacing=10;fontColor=#000000;" vertex="1" parent="1">
+                <mxCell id="26" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Trello API&lt;/b&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;[Software System]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Stores the to-do app items and lists&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;spacing=10;fontColor=#000000;" parent="1" vertex="1">
                     <mxGeometry x="960" y="650" width="180" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="27" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;App Controller&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Contains logic for what the app should do given the route and HTTP method&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" vertex="1" parent="1">
-                    <mxGeometry x="410" y="580" width="180" height="110" as="geometry"/>
+                <mxCell id="27" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Template&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Contains the HTML that is shown to the user based on the route&amp;nbsp;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="580" width="180" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="24" target="27">
+                <mxCell id="28" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="27" target="35" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="270" y="395" as="sourcePoint"/>
                         <mxPoint x="420" y="295" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="29" value="Routes requests for" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;fontColor=#000000;" connectable="0" vertex="1" parent="28">
+                <mxCell id="29" value="Sends requests to" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;fontColor=#000000;" parent="28" connectable="0" vertex="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Trello Wrapper&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Converts requests from the app to Trello API requests&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" vertex="1" parent="1">
-                    <mxGeometry x="630" y="720" width="180" height="110" as="geometry"/>
+                <mxCell id="30" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;Trello Wrapper&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Converts requests from the app to Trello API requests&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="580" width="180" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="27" target="30">
+                <mxCell id="31" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="35" target="30" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="600" y="639.9999999999998" as="sourcePoint"/>
                         <mxPoint x="750" y="580" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="32" value="Passes requests to" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;fontColor=#000000;" connectable="0" vertex="1" parent="31">
+                <mxCell id="32" value="Passes requests to" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;fontColor=#000000;" parent="31" connectable="0" vertex="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="33" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1">
+                <mxCell id="33" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;" parent="1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <mxPoint x="820" y="325" as="sourcePoint"/>
                         <mxPoint x="970" y="395" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="34" value="Makes API calls to" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontColor=#000000;labelBackgroundColor=#FFFFFF;" connectable="0" vertex="1" parent="33">
+                <mxCell id="34" value="Makes API calls to" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;fontColor=#000000;labelBackgroundColor=#FFFFFF;" parent="33" connectable="0" vertex="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="&lt;div style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;App Controller&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Contains logic for what the app should do given the route and HTTP method&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;spacing=10;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="720" width="180" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;verticalAlign=middle;edgeStyle=orthogonalEdgeStyle;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="24" target="27">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="600" y="785" as="sourcePoint"/>
+                        <mxPoint x="730" y="700" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="38" value="Serves website via" style="edgeLabel;resizable=0;html=1;align=center;verticalAlign=middle;labelBackgroundColor=#FFFFFF;fontColor=#000000;" connectable="0" vertex="1" parent="37">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
             </root>
