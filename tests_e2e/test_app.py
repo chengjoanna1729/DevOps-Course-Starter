@@ -2,19 +2,22 @@ import pytest
 import os
 from threading import Thread
 from selenium import webdriver
+from dotenv import load_dotenv
 
 from trello import Trello
 import app
 
 @pytest.fixture(scope='module')
 def test_app():
+    load_dotenv(override=True)
+
     # Create the new board & update the board id environment variable
-    trello = Trello('.env')
+    trello = Trello()
     board_id = trello.create_trello_board("Test board")
     os.environ['TRELLO_BOARD_ID'] = board_id
 
     # construct the new application
-    application = app.create_app('.env')
+    application = app.create_app()
 
     # start the app in its own thread.
     thread = Thread(target=lambda: application.run(use_reloader=False))

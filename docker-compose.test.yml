@@ -5,5 +5,5 @@ services:
             context: .
             dockerfile: Dockerfile
             target: test
-        env_file: .env.test
+        env_file: .env
         

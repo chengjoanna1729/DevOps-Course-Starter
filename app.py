@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for
 from trello import Trello
 from view_model import ViewModel
 
-def create_app(dotenv = '.env'):
+def create_app():
     app = Flask(__name__)
-    trello = Trello(dotenv)
+    trello = Trello()
 
     @app.route('/')
     def index():
