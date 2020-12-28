@@ -28,11 +28,15 @@ def test_app():
 
 @pytest.fixture(scope='module')
 def driver():
-    with webdriver.Firefox() as driver:
+    opts = webdriver.ChromeOptions()
+    opts.add_argument('--headless')
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
+    with webdriver.Chrome('./chromedriver', options=opts) as driver:
         yield driver
 
 def test_task_journey(driver, test_app):
-    driver.get('http://localhost:5000')
+    driver.get('http://127.0.0.1:5000')
 
     assert driver.title == 'To-Do App'
 

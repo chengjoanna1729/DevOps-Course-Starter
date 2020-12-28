@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+    todo-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: test
+        env_file: .env.test
+        
