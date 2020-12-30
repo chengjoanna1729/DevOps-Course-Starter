@@ -8,7 +8,7 @@ RUN pip install poetry \
     && poetry config virtualenvs.create false
 RUN poetry install --no-root --no-dev
 COPY . /src/
-ENTRYPOINT ["gunicorn", "--bind", "0.0.0.0", "wsgi:app"]
+ENTRYPOINT "gunicorn --bind 0.0.0.0:$PORT wsgi:app"
 
 FROM base as development
 RUN pip install poetry
