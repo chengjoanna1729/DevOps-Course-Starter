@@ -1,13 +1,18 @@
 import pytest
 import requests
 import lxml.html
+from dotenv import load_dotenv
+from trello import Trello
 
 import app
 
 @pytest.fixture
 def client():
+    # Use test env variables
+    load_dotenv('.env.test')
+
     # Create the new app.
-    test_app = app.create_app('.env.test')
+    test_app = app.create_app()
 
     # Use the app to create a test_client that can be used in our tests.
     with test_app.test_client() as client:
@@ -39,12 +44,32 @@ class MockCardsResponse:
             },
         ]
 
+MockListsResponse = [
+    {
+        "id": "todo-list-id",
+        "name": "To Do"
+    },
+    {
+        "id": "doing-list-id",
+        "name": "Doing"
+    },
+    {
+        "id": "done-list-id",
+        "name": "Done"
+    },
+]
+            
+
 @pytest.fixture()
 def mock_requests(monkeypatch):
-    def mock_get(*args, **kwargs):
+    def mock_get_cards(*args, **kwargs):
         return MockCardsResponse
+        
+    def mock_get_lists(*args, **kwargs):
+        return MockListsResponse
 
-    monkeypatch.setattr(requests, "request", mock_get)
+    monkeypatch.setattr(requests, "request", mock_get_cards)
+    monkeypatch.setattr(Trello, "get_lists", mock_get_lists)
 
 
 def test_app(mock_requests, client):

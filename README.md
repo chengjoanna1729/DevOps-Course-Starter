@@ -29,10 +29,10 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 ### Connecting with Trello
 To connect up the app with a trello board, copy the contents of `.env.template` into a `.env` file if not already done in setup. 
 Paste your Trello API key and token from [here](https://trello.com/app-key) into the respective values.
-Identify the id of the board you wish to connect with, as well as the list ids of the to-do, doing, and done lists and paste them in.
+Identify the id of the board you wish to connect with, and make sure it has lists with names 'To-Do', 'Doing', and 'Done'.
 
 ### Running tests
-To be able to run the e2e tests, Firefox must be installed and you must download `geckodriver.exe` and put it in the root folder of the project.
+To be able to run the e2e tests, Chrome must be installed and you must download `chromedriver.exe` and put it in the root folder of the project.
 
 To run all tests, run `pytest`.
 To run tests in a particular folder, run `pytest tests` or `pytest tests_e2e`.
@@ -44,6 +44,9 @@ In the root directory of this repo, run `vagrant up`.
 To run the app in their respective environments, run the following commands:
 Dev: `docker-compose up --build`
 Prod: `docker-compose -f docker-compose.prod.yml up --build`
+
+### Running tests via docker-compose
+To run the tests in a docker container, run `docker-compose -f docker-compose.test.yml up --build`
 
 ### Architecture diagrams
 These can be found in the `./documentation` folder.
