@@ -29,7 +29,7 @@ Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser
 ### Connecting with Trello
 To connect up the app with a trello board, copy the contents of `.env.template` into a `.env` file if not already done in setup. 
 Paste your Trello API key and token from [here](https://trello.com/app-key) into the respective values.
-Identify the id of the board you wish to connect with, as well as the list ids of the to-do, doing, and done lists and paste them in.
+Identify the id of the board you wish to connect with, and make sure it has lists with names 'To-Do', 'Doing', and 'Done'.
 
 ### Running tests
 To be able to run the e2e tests, Chrome must be installed and you must download `chromedriver.exe` and put it in the root folder of the project.

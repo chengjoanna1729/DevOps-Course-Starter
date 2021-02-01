@@ -116,8 +116,6 @@ env/
 .env
 
 ### Testing ###
-geckodriver.exe
-geckodriver.log
 chromedriver.exe
 
 ### Vagrant ###
