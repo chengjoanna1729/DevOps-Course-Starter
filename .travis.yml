@@ -9,11 +9,11 @@ after_success:
   - echo $DOCKER_PASSWORD | docker login --username chengjoanna1729 --password-stdin
   - docker build --target production --tag chengjoanna1729/todo-app:latest .
   - docker tag chengjoanna1729/todo-app:latest chengjoanna1729/todo-app:$TRAVIS_COMMIT
-  - docker push chengjoanna1729/todo-app:latest
   - docker push chengjoanna1729/todo-app:$TRAVIS_COMMIT
 before_deploy:
+  - docker push chengjoanna1729/todo-app:latest
   - docker pull chengjoanna1729/todo-app
-  - echo $HEROKU_API_KEY | docker login --username=joanna.cheng@softwire.com --password=$HEROKU_API_KEY registry.heroku.com
+  - echo $HEROKU_API_KEY | docker login --username=joanna.cheng@softwire.com --password-stdin registry.heroku.com
   - docker tag chengjoanna1729/todo-app registry.heroku.com/todo-app-joache/web
   - docker push registry.heroku.com/todo-app-joache/web
 deploy:

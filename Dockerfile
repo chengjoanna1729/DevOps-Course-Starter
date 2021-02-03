@@ -1,18 +1,18 @@
 FROM python:3.8.5-buster as base
 WORKDIR /src
 COPY poetry.lock pyproject.toml /src/
-EXPOSE 5000
 
 FROM base as production
 RUN pip install poetry \
     && poetry config virtualenvs.create false
 RUN poetry install --no-root --no-dev
 COPY . /src/
-ENTRYPOINT "gunicorn --bind 0.0.0.0:$PORT wsgi:app"
+ENTRYPOINT gunicorn --bind 0.0.0.0:${PORT:-8000} wsgi:app
 
 FROM base as development
 RUN pip install poetry
 RUN poetry install
+EXPOSE 5000
 ENTRYPOINT ["poetry", "run", "flask", "run", "--host", "0.0.0.0"]
 
 FROM base as test
