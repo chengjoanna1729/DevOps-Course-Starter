@@ -1,5 +1,8 @@
 services:
   - docker
+branches:
+  only:
+    - master
 install:
   - docker build --target test --tag todo-app:test .
 script:
