@@ -7,21 +7,21 @@ from to_do_item import ToDoItem, Status
 @pytest.fixture
 def items_view_model():
     return ViewModel([
-    ToDoItem(1, "Title 1", Status.TO_DO, "Description 1", datetime.now()),
-    ToDoItem(2, "Title 2", Status.TO_DO, "Description 2", datetime.now()),
-    ToDoItem(3, "Title 3", Status.DOING, "Description 3", datetime.now()),
-    ToDoItem(4, "Title 4", Status.DONE, "Description 4", datetime.now())
+    ToDoItem(1, "Title 1", Status.TO_DO, datetime.now()),
+    ToDoItem(2, "Title 2", Status.TO_DO, datetime.now()),
+    ToDoItem(3, "Title 3", Status.DOING, datetime.now()),
+    ToDoItem(4, "Title 4", Status.DONE,datetime.now())
     ])
 
     
 @pytest.fixture
 def done_items_view_model():
     return ViewModel([
-        ToDoItem(11, "Title 1", Status.DONE, "3 days done", datetime.now() - timedelta(days=3)),
-        ToDoItem(12, "Title 2", Status.DONE, "2 hours done", datetime.now() - timedelta(hours=2)),
-        ToDoItem(13, "Title 3", Status.DONE, "Just done", datetime.now()),
-        ToDoItem(14, "Title 4", Status.DONE, "30 days done", datetime.now() - timedelta(days=30)),
-        ToDoItem(15, "Title 5", Status.DONE, "23 hours done", datetime.now() - timedelta(hours=23))
+        ToDoItem(11, "Title 1", Status.DONE, datetime.now() - timedelta(days=3)),
+        ToDoItem(12, "Title 2", Status.DONE, datetime.now() - timedelta(hours=2)),
+        ToDoItem(13, "Title 3", Status.DONE, datetime.now()),
+        ToDoItem(14, "Title 4", Status.DONE, datetime.now() - timedelta(days=30)),
+        ToDoItem(15, "Title 5", Status.DONE, datetime.now() - timedelta(hours=23))
     ])
 
 def test_return_all_items(items_view_model):
