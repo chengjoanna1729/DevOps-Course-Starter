@@ -1,15 +1,16 @@
 import pytest
 import requests
 import lxml.html
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 from mongodb import MongoDB
+import pymongo
 
 import app
 
 @pytest.fixture
 def client():
     # Use test env variables
-    load_dotenv('.env.test')
+    load_dotenv(find_dotenv('.env.test'), override=True)
 
     # Create the new app.
     test_app = app.create_app()
@@ -43,8 +44,12 @@ mock_collection_items = [
 def mock_requests(monkeypatch):
     def mock_get_collection_items(*args, **kwargs):
         return mock_collection_items
+    
+    def mock_get_client(*args, **kwargs):
+        return { "test-db": { "all_todos" : {} } }
 
     monkeypatch.setattr(MongoDB, "get_collection_items", mock_get_collection_items)
+    monkeypatch.setattr(pymongo, "MongoClient", mock_get_client)
 
 
 def test_app(mock_requests, client):
