@@ -26,10 +26,9 @@ You should see output similar to the following:
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
 
-### Connecting with Trello
-To connect up the app with a trello board, copy the contents of `.env.template` into a `.env` file if not already done in setup. 
-Paste your Trello API key and token from [here](https://trello.com/app-key) into the respective values.
-Identify the id of the board you wish to connect with, and make sure it has lists with names 'To-Do', 'Doing', and 'Done'.
+### Connecting with MongoDB
+To connect up the app with a MongoDB collection, copy the contents of `.env.template` into a `.env` file if not already done in setup. 
+Paste your Mongo database hostname, user, password, and database name into the respective values.
 
 ### Running tests
 To be able to run the e2e tests, Chrome must be installed and you must download `chromedriver.exe` and put it in the root folder of the project.

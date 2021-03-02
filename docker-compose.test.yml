@@ -1,9 +1,16 @@
 version: '3.8'
 services:
-    todo-app:
+    todo-app-tests:
+        build:
+            context: .
+            dockerfile: Dockerfile
+            target: test
+        env_file: .env.test
+        entrypoint: poetry run pytest tests
+    todo-app-tests-e2e:
         build:
             context: .
             dockerfile: Dockerfile
             target: test
         env_file: .env
-        
+        entrypoint: poetry run pytest tests_e2e
