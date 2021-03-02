@@ -6,8 +6,10 @@ from to_do_item import ToDoItem, Status
 
 class MongoDB:
     def __init__(self):
+        self.mongo_db_user = os.getenv("MONGO_DB_USER")
         self.mongo_db_password = os.getenv("MONGO_DB_PASSWORD")
-        self.connection_string = f'mongodb+srv://JoaChe:{self.mongo_db_password}@cluster0.v7t44.mongodb.net/todos?retryWrites=true&w=majority'
+        self.mongo_db_hostname = os.getenv("MONGO_DB_HOSTNAME")
+        self.connection_string = f'mongodb+srv://{self.mongo_db_user}:{self.mongo_db_password}@{self.mongo_db_hostname}/todos?retryWrites=true&w=majority'
         self.client = pymongo.MongoClient(self.connection_string)
         self.db_name = os.getenv("MONGO_DB_NAME")
         self.collection = self.get_collection()
