@@ -7,7 +7,7 @@ install:
   - docker build --target test --tag todo-app:test .
 script:
   - docker run todo-app:test tests
-  - docker run -e MONGO_DB_USER -e MONGO_DB_PASSWORD -e MONGO_DB_NAME -e MONGO_DB_HOSTNAME todo-app:test tests_e2e
+  - docker run -e DB_CONNECTION_STRING todo-app:test tests_e2e
 after_success:
   - echo $DOCKER_PASSWORD | docker login --username chengjoanna1729 --password-stdin
   - docker build --target production --tag chengjoanna1729/todo-app:latest .
@@ -16,19 +16,14 @@ after_success:
 before_deploy:
   - docker push chengjoanna1729/todo-app:latest
   - docker pull chengjoanna1729/todo-app
-  - echo $HEROKU_API_KEY | docker login --username=joanna.cheng@softwire.com --password-stdin registry.heroku.com
-  - docker tag chengjoanna1729/todo-app registry.heroku.com/todo-app-joache/web
-  - docker push registry.heroku.com/todo-app-joache/web
 deploy:
   provider: script
-  script: heroku container:release web -a todo-app-joache
+  script: curl -dH -X POST "$WEBHOOK"
   on:
-    branch: master
+    branch: exercise-11
 env:
   global:
   - secure: F2xfgjhsGpnzRHQIAkakCh7J9/PZTZV9AKhLDuPURmZlSBdZ+iR2wvyWHQ97Q9wO/UMmUxuJT/b4k4LkuHEZLGSKl6pzRgg+2Prhz/MTDvTYJYwIAdfSqws0U6TqDVVLnLNNzy3az/zFhDEfztHzbcy4dzPCfGtcA46ziZtbyl28/yzjR/wQQCrl4xecfHjae5R9FF7CF2A8e9kAspjurW/s+0erXaCD49BVUd4AxT1yswhshI2MPHE4+NNPn+s9oskjUXaUmPEgg3I9vGtS5rASoLozp57Leuola1rJRZxd0TVs5nOX3Jv+5EaDECJzjNq6PcXC/JbcmBt4wt3r0UmJrOs3t9VHiPhd4/kPIHFq7rNgPpvKhwBN/aqAaTC9Jh/58HZD99LtNXO9EJR6yHtlFI8AdbAuNsj6lFGtOGDv6dQyMYYigdMKoaK3zIh6Wm9L1YFboYbTcvP2Fc0HvoH9YeLQ63wqd5VuHT92gOgNSu6/biTczdzMk8qpDcgTH2db34dwCqxIf97rNOE75VQw7EBuU2gsUPbU2TNRHml1ExmFDGl9tAlxddFDm0FIsDzWbyA6BCoK4M+f5MF/Bgm6+YJyQZr0AZrKTcpvHHs6n+FLjlf6W7Mh+GBnY7rjWU2LxF9ibepEGE+PFnaNb4ILJXg7CZmcN0nqt8z0DwE=
-  - secure: dANBny9UXGQIQqcRI/rsZk2vseYSYmu6tpC+68NceZ3iOdqGQZHzJuNSFzJ2gLEtRXxtPfzLIBockaJqeCFB6jMQN/mrKwX4NLNocUWEzsCbY8xE5UbqBDISDOUA+QS/3cLCEfaAbdEu81LUnThoFwicB3xEs5W/WZ4QPXVu5GqW0QF6QMzzUcFD+YcUKnP7lGhDJz6Dz0C3rW4Rh0iRbu4Eg/f6kC5VKemZS/jQhm2bV7nmKVFRfwj+JShBAgc5n0niYFRQNiaQqptjHNl6DIED+e8Zs2ICrN/i+EG+fl+mFTBsquzUdCFfAi9Wsfl8sSeiN3MNhhoaaKSlbwui6tDCZ1GbGIwxpZgsWngc+uOW4fPmM7MoGQEUYjnIYamsqZFh3/jW69JPTinCNjwNd7tlrjBFz31eKRjvCFSpnkvjzMmYUXqVU2yLyBGElOLEBc1CvQwWc6B8+I5zfZNhdQTqapMB5Dv4MQ2Ukz6QiT2Xi/C414m+hAcvUnma8Chn8w7t+1hn97etXDJn+PjEdKdf4R2qoiyYoz7ViRf228r3R3sAmvCezOl3i+skv+uQV8TqvqSmBN23DcupoBXBOdNibpn7Pw03/FTSwhUWy58ciUKt6Yr+7wMcwpQO5ukKqfRKavxVVBNaR20zxV/EgghQqIhgEuKy5YI8cJUHcd0=
-  - secure: E7stOOr2ubmJowSemaIxWqu4xF1JTPl8IiquFVg7U1PoAtWILwLUPizrLCtTY5cS5zUwueuPFQ9irCK7tZSquPuunZ45TISIe/wTCrJKROtjxwL4/FHpAfd3Y4kQSLFrBCISl4HTaetkPj+E3I4821ncXHRr1R6ExEVFipMj4zB2DdUqfZT+VWALyqWnJrQSt4mHu2aikUyFKauKiawnXBtmRI73zWydyuYK/X5xsIIjmZdE3JxtAGG1fPc+OtLv1OtQjMLMoUPxhEpykXQPuXXxXJo5viUNFRN87jxxcYYLOmopep5XRP33PSpNMwuWftC+m/Q5zlO9/MqUED/yqB65JO5TdP9loYKn+/pQBvGyt52YfClUGaVcXD0cOfhAd9NlnNfy+CJI7azMSpI7ILNopdBeGsret06k63d6Mi1p6l67a6OSmNs6i9baVuBzG2Qd5+jGLeW+pcIjJ6RErI4CugmCUeN6U2gHmDKw9q6QOn/Zxjg5c7WuA4HFwh6Vy9iExYCzW7ulxUN9jZ93Z+QwsKnkpVfpm6qIVEb+T+buQ9Z6GkXiL3iWP/rhNmilOd3o94aXoWOOmg1FCgn+WpE42K11jHakPcEdEAI1MLZk2kStb6QLKwgvEV6ismd2qLl6cFRzNYSsJqMtbvfHKsNOaWwExEqzOI8WdTs89CQ=
-  - MONGO_DB_USER=JoaChe
-  - MONGO_DB_NAME=todos
-  - MONGO_DB_HOSTNAME=cluster0.v7t44.mongodb.net
+  - COLLECTION_NAME=todos
+  - secure: RnZmU0KF+Du828GtxhP4Y321zM7D665zrbUX7a/1YNdALCVONfDJZ4g4UjtWI/eE1AZ6hTHcsNHPb4RRgjOK4FXYKUP87xATPOzrCIzpIDqtLRXOl7onhDx8GXQrAjIuczt1prNmbcvBNOI/fgoXfXj5HiNP0svysaVxunWEC6f0+WU4WlIPbnqYolZFPlpGOq7jnTAXHiLqptnKit2fwn65M5hS9X2tvlshZbkeIykvoMonnopNALUH0sDN9Q8/Lt2f4c9pAtZwlM2KR3Uk2Hlp5h3auL7DyVNEOaFl24vYsz1bF836q5DqqZPsnbRdG8OpkBeE6QRhENCdHFmB5WLBC1xAwQHPSY+tq0iBxBWVu69La7xeVYge7dAUs3Qg7d5A4zQvKwlTBQM8Zig3Pw+b9hvdpqexi1G/Jzomvk9n+owJtBHMr4Srkw7xlCKsEELJPdbeX3ezApLGPvcGQw+TKisBLIRmg0CzmWoQrw97Hu+1Z49A3lKJSYkIWR/gFJVOmp8kKUDAOj3+ho8ET5WnlQM1ce5gW9X8oVEZgVOlOFsd358kayeuREEcDd80JDkaryfBRssdw2ea8kWAvpKK2cYKOa3x8P6v19ITjyhKJ1YIHgMESfQ/PC4nnQ2atcl9TtJs+yr7kHf00eom4ySvCCfe94ZsEUuAhIcmNB0=
+  - secure: I2CgqZ/2P8b3bEWnEM/UJ+TYMZt36IAnKvrmDswLgENeZXDH5FeYZrUJTimQ8HaBIN/+WWUngMfVk52Wt4dl6nPkZI+9AB1DDKqYrxaKENnOAjz9zYQz0f1Wqqv15TmhKlsRe/RKCIREmVI9ATQjeb0xN0IhOi0maTSsHCP0L5Virza38mBSlAVPMUob4ESzKm14aXniCuc9riwxQbHnnJMXV0AMBatm93ljRyGsPJ+SDe7B8hGtO7sM82ZN5BR9naljLQAGskZUPY3IG3+6xANgLzQS6ELk9mwMBvzkKQgPIc+HH/IiHJaXiHFZVrA5i6UhnPKXRS8VMozOlr9B5Fvc5n6HsxVz2VaIVbZjJJn1YCjVDLR28CZ/G7iJcWxhdDzpqTVi8S/tGxNE0ZmTcoK4zBhoB1MOsZPxk+JyCxrjzYnM4cmgi3kkwg3/9QAJoy41BsBE6GcjLCNerYxsM5XBu9wzQmEcvvhPi0tX6ISz0hbygT27CLLQ/xe1cUJxKhLtWXztbDbbBKYFgU2u8eKs1p88lFPKu3REAeE7bfdab1w7oswiT9GTE+HFqCzlG0MjAfqhnIQedSoSebZg5skrhZlIxxGEcpwFpMohlFcaaY6PZRdwI+zt39v8j/w71AT8M04FCyMbrGJ62O0Swc+FsS3WtFSeo1KY70iraVk=
