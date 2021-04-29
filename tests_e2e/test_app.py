@@ -12,7 +12,7 @@ def test_app():
     load_dotenv(override=True)
 
     # Create the new board & update the board id environment variable
-    os.environ['MONGO_DB_NAME'] = 'test-todos'
+    os.environ['COLLECTION_NAME'] = 'test-todos'
 
     # construct the new application
     application = app.create_app()
