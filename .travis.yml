@@ -10,17 +10,17 @@ script:
   - docker run -e DB_CONNECTION_STRING todo-app:test tests_e2e
 after_success:
   - echo $DOCKER_PASSWORD | docker login --username chengjoanna1729 --password-stdin
-  - docker build --target production --tag chengjoanna1729/todo-app:latest .
+  - docker pull chengjoanna1729/todo-app
+  - docker build --build-arg BUILDKIT_INLINE_CACHE=1 --cache-from chengjoanna1729/todo-app --target production --tag chengjoanna1729/todo-app:latest .
   - docker tag chengjoanna1729/todo-app:latest chengjoanna1729/todo-app:$TRAVIS_COMMIT
   - docker push chengjoanna1729/todo-app:$TRAVIS_COMMIT
 before_deploy:
   - docker push chengjoanna1729/todo-app:latest
-  - docker pull chengjoanna1729/todo-app
 deploy:
   provider: script
   script: curl -dH -X POST "$WEBHOOK"
   on:
-    branch: exercise-11
+    branch: master
 env:
   global:
   - secure: F2xfgjhsGpnzRHQIAkakCh7J9/PZTZV9AKhLDuPURmZlSBdZ+iR2wvyWHQ97Q9wO/UMmUxuJT/b4k4LkuHEZLGSKl6pzRgg+2Prhz/MTDvTYJYwIAdfSqws0U6TqDVVLnLNNzy3az/zFhDEfztHzbcy4dzPCfGtcA46ziZtbyl28/yzjR/wQQCrl4xecfHjae5R9FF7CF2A8e9kAspjurW/s+0erXaCD49BVUd4AxT1yswhshI2MPHE4+NNPn+s9oskjUXaUmPEgg3I9vGtS5rASoLozp57Leuola1rJRZxd0TVs5nOX3Jv+5EaDECJzjNq6PcXC/JbcmBt4wt3r0UmJrOs3t9VHiPhd4/kPIHFq7rNgPpvKhwBN/aqAaTC9Jh/58HZD99LtNXO9EJR6yHtlFI8AdbAuNsj6lFGtOGDv6dQyMYYigdMKoaK3zIh6Wm9L1YFboYbTcvP2Fc0HvoH9YeLQ63wqd5VuHT92gOgNSu6/biTczdzMk8qpDcgTH2db34dwCqxIf97rNOE75VQw7EBuU2gsUPbU2TNRHml1ExmFDGl9tAlxddFDm0FIsDzWbyA6BCoK4M+f5MF/Bgm6+YJyQZr0AZrKTcpvHHs6n+FLjlf6W7Mh+GBnY7rjWU2LxF9ibepEGE+PFnaNb4ILJXg7CZmcN0nqt8z0DwE=
