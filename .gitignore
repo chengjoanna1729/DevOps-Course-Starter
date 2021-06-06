@@ -120,3 +120,9 @@ chromedriver.exe
 
 ### Vagrant ###
 .vagrant
+
+### Terraform ###
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars

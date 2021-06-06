@@ -5,3 +5,10 @@
 env/
 
 Vagrantfile
+
+
+### Terraform ###
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
