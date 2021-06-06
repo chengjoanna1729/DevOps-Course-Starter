@@ -23,7 +23,7 @@ data "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_app_service_plan" "main" {
-  name                = "terraformed-asp"
+  name                = "${var.prefix}-terraformed-asp"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.main.name
   kind                = "Linux"
@@ -36,7 +36,7 @@ resource "azurerm_app_service_plan" "main" {
 }
 
 resource "azurerm_app_service" "main" {
-  name                = "terraformed-todo-app-joache"
+  name                = "${var.prefix}-terraformed-todo-app-joache"
   location            = var.location
   resource_group_name = data.azurerm_resource_group.main.name
   app_service_plan_id = azurerm_app_service_plan.main.id
@@ -54,7 +54,7 @@ resource "azurerm_app_service" "main" {
 }
 
 resource "azurerm_cosmosdb_account" "main" {
-  name                = "terraformed-cosmosdb-account"
+  name                = "${var.prefix}-terraformed-cosmosdb-account"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = var.location
   offer_type          = "Standard"
@@ -84,7 +84,7 @@ resource "azurerm_cosmosdb_account" "main" {
 }
 
 resource "azurerm_cosmosdb_mongo_database" "main" {
-  name                = "todos"
+  name                = "${var.prefix}-todos"
   resource_group_name = data.azurerm_resource_group.main.name
   account_name        = azurerm_cosmosdb_account.main.name
 }

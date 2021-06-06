@@ -2,7 +2,7 @@ services:
   - docker
 branches:
   only:
-    - master
+    - exercise-12
 install:
   - docker build --target test --tag todo-app:test .
 script:
@@ -21,12 +21,13 @@ before_deploy:
   - sudo mv terraform /usr/local/bin/
   - rm terraform_"$TF_VERSION"_linux_amd64.zip
   - terraform init
-  - terraform apply -auto-approve
+  - terraform apply -var="prefix=$PROD_ENV_PREFIX" -auto-approve
 deploy:
+  skip_cleanup: true
   provider: script
   script: curl -dH -X POST "$(terraform output -raw webhook)"
   on:
-    branch: master
+    branch: exercise-12
 env:
   global:
   - secure: F2xfgjhsGpnzRHQIAkakCh7J9/PZTZV9AKhLDuPURmZlSBdZ+iR2wvyWHQ97Q9wO/UMmUxuJT/b4k4LkuHEZLGSKl6pzRgg+2Prhz/MTDvTYJYwIAdfSqws0U6TqDVVLnLNNzy3az/zFhDEfztHzbcy4dzPCfGtcA46ziZtbyl28/yzjR/wQQCrl4xecfHjae5R9FF7CF2A8e9kAspjurW/s+0erXaCD49BVUd4AxT1yswhshI2MPHE4+NNPn+s9oskjUXaUmPEgg3I9vGtS5rASoLozp57Leuola1rJRZxd0TVs5nOX3Jv+5EaDECJzjNq6PcXC/JbcmBt4wt3r0UmJrOs3t9VHiPhd4/kPIHFq7rNgPpvKhwBN/aqAaTC9Jh/58HZD99LtNXO9EJR6yHtlFI8AdbAuNsj6lFGtOGDv6dQyMYYigdMKoaK3zIh6Wm9L1YFboYbTcvP2Fc0HvoH9YeLQ63wqd5VuHT92gOgNSu6/biTczdzMk8qpDcgTH2db34dwCqxIf97rNOE75VQw7EBuU2gsUPbU2TNRHml1ExmFDGl9tAlxddFDm0FIsDzWbyA6BCoK4M+f5MF/Bgm6+YJyQZr0AZrKTcpvHHs6n+FLjlf6W7Mh+GBnY7rjWU2LxF9ibepEGE+PFnaNb4ILJXg7CZmcN0nqt8z0DwE=
@@ -38,3 +39,4 @@ env:
   - secure: gB0uOmx+T39Ly1rNva1z/OenM9kDAuJgYDE6gMWivE+YFNzR8237yXnk1LoL3K0Ak+twOIPPuWn0L6kANIijMzJTsgobB+OvlZ6koyN211larpee8PeCM2OyhwY/083SBkzxklc+/WxWRM0EbFvdLNzIJWWDVmoS9xFPnm3Wah2drJARm3HPKZt1fotWRWHw6djQlk2aIXwpH+8gV6jtCwAQGgvim3wQXAX30IJPNt4cgr/Kpfw/rPZqoiNhbTZlrqY+Br2E5lIhxC5HQKZolDcC76Nqd62RPf8baAR5GCSCeFDTGxsbR7LdUH5zTVMgIjFjvex5tnUhHpy+BWtIEgH8qzXm5zHZ3/fQi/uBxxCPaDQGA5d+m0SpIxxdLD4h5GXY40myldpe//84WHC3PhKng+bD3I3fqdxa/jnok2MCw/BtrCmSX0AIGImIHmDKfhkXnnQy10iVQUEvSPkJwFVuO5Q0knjMHcsfAZoJLC/9R/5Nv4YsfIX08kAvrtfLakGRU3FPxIY+OQX3JJiuMkw9rBZi/hrb0AzjHDesg6YLEdgmWlF4vylcodlPaqUd2czz2efe+wLamNxJXtYcY1rgRfWkyxWSYiqm23IcaQt/3CrGbNVw7caCFKkB7UAGCY/j4/xbCXM6sW0Tkty6PBLj4Ej98UXfV3L0Fe0EkJQ=
   - secure: OyJR9zoEmeQyCvpXmWnSsvBf+iFR0ICarMMrz8Y31n0YCF2e07xRynA9usGSKSPRbCFXhxC3vTybAiBtpoDRWTkR1vOeyGsrjrzftaVJzdkZogwyu9uQJY39PsCmrjE+Fr5h9Ea8w3vRlkSWmkoG+PK4H3wtIU4X2DkUgHMv0tn+nBYotTKMxGPkyhP+4W2EferjJjYMantDX7Kxr4hEiGwiOg7LSi2BqI0wor3jJdYcpGq7gPPN4/3c3eDtzqFiD3CIsBh9nZohdAlbhnyDdTsnZXjMncEcW8jSCntnorDQwqiB7lTT/QODoRwTKrFivJEFI6x/k+yqT6iW2Kw9OTIcffx+wMgOQy80YQrH1BzYyP9GN/R4B/X2cMcKbUienalH+eektxVk4nVZyM+6G1l5eqZubcLu/py5j33cNoBCuHrSVx8LFwPQcT0zacdluV+yb9e3A/63ndnTgcJhMVv+XNbYmusyAIuMd2aQirpkNk/8/lTDLQ0pGLeRSW2KDv2QRIqasX69N/JH+11kmIdf3HwfnkPKhJHW0qiac/8hWKL7uQOlRPEk0H5QcEGZ/aazcw7k+/6hlpxOcliturBddbU/RCCukY+5sjLZ/7LqKz6nWgEugO4D5C17rN9CpxXil1NqxrPqlc1g2CMX6TCHRnSrn7XorkH76lICMO4=
   - TF_VERSION=0.14.7
+  - PROD_ENV_PREFIX=prod
